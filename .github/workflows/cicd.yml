@@ -18,6 +18,8 @@ jobs:
     steps:
       - name: dockerlogin
         run: echo ${{ secrets.DOCKER_USERNAME }}
+
+      - name: dockerpass
         run: echo ${{ secrets.DOCKER_PASSWORD }}
         
       - name: Checkout code
