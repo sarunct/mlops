@@ -8,7 +8,7 @@ image:
   repository: sarunct/mf-ml:latest
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: default
+  tag: default-value
 
 imagePullSecrets: []
 nameOverride: ""
