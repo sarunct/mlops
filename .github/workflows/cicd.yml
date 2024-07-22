@@ -7,8 +7,8 @@ on:
     branches:
       - main
 env:
-  DOCKERHUB_USERNAME: ${{ secrets.DOCHUB_USR }}
-  DOCKERHUB_KEY: ${{ secrets.DOCHUB_PASS }}
+  DOCHUB_USR: ${{ secrets.DOCHUB_USR }}
+  DOCHUB_PASS: ${{ secrets.DOCHUB_PASS }}
   IMAGE_NAME: mlops
 
 jobs:
