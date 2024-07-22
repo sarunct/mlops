@@ -26,10 +26,10 @@ jobs:
           password: ${{ env.DOCHUB_PASS }}
 
       - name: Build Docker image
-        run: docker build -t sarunct/${{ env.IMAGE_NAME }}:${{ github.sha::6 }} .
+        run: docker build -t sarunct/${{ env.IMAGE_NAME }}:${{ github.sha }} .
 
       - name: Push Docker image
-        run: docker push sarunct/${{ env.IMAGE_NAME }}:${{ github.sha::6 }}
+        run: docker push sarunct/${{ env.IMAGE_NAME }}:${{ github.sha }}
 
       # Continous Deployment is comment as local minikube is not exposed to internet
       # - name: Helm Lint
