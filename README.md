@@ -27,10 +27,10 @@ Checks out the code from the repository and create secret for Docker login
 
 Builds a Docker image using the provided Dockerfile.
 
-      To create your own Docker image using your Python file, follow these steps:
+To create your own Docker image using your Python file, follow these steps:
       
-          1, Create a Python file: Create a Python file named <name>.py with your ML code.
-          2, Modify the Dockerfile: Ensure the Dockerfile is set up to copy your Python file into the image.
+1, Create a Python file: Create a Python file named <name>.py with your ML code.
+2, Modify the Dockerfile: Ensure the Dockerfile is set up to copy your Python file into the image.
 
                     Dockerfile:
                     
@@ -43,12 +43,14 @@ Builds a Docker image using the provided Dockerfile.
                     CMD ["python3", "./ml.py"]
 
 Pushes the Docker image to a Docker repository:
+
+1, Trigger the CI/CD Pipeline: The GitHub Actions pipeline will automatically build and push the Docker image to your Docker repository.
+2, Once the pipeline successfully completes, your Docker image will be available in your Docker repository.
           
                     git add ml.py Dockerfile
                     git commit -m "Add ML Python file and Dockerfile"
                     git push origin main
 
-           1, Trigger the CI/CD Pipeline: The GitHub Actions pipeline will automatically build and push the Docker image to your Docker repository.
-           2, Once the pipeline successfully completes, your Docker image will be available in your Docker repository.
+
 
       
