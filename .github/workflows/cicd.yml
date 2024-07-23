@@ -7,8 +7,6 @@ on:
     branches:
       - main
 env:
-  # DOCKERHUB_USERNAME: ${{ secrets.DOCHUB_USR }}
-  # DOCKERHUB_KEY: ${{ secrets.DOCHUB_PASS }}
   IMAGE_NAME: mlops
 
 jobs:
@@ -32,32 +30,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Docker image
-        run: docker build -t sarunct/${{ env.IMAGE_NAME }}:${{ github.sha }} .
+        run: docker build -t <repo-name>/${{ env.IMAGE_NAME }}:${{ github.sha }} .
 
       - name: Push Docker image
-        run: docker push sarunct/${{ env.IMAGE_NAME }}:${{ github.sha }}
-
-      # Continous Deployment is comment as local minikube is not exposed to internet
-      # - name: Helm Lint
-      #   run: helm lint my-ml-api
-
-      # - name: Package Helm Chart
-      #   run: helm package my-ml-api
-
-      # - name: Install Helm Chart (Dev)
-      #   run: helm install my-ml-api-dev ./my-ml-api --values values-dev.yaml
-
-      # - name: Install Helm Chart (Staging)
-      #   run: helm install my-ml-api-staging ./my-ml-api --values values-staging.yaml
-
-      # - name: Install Helm Chart (Prod)
-      #   run: helm install my-ml-api-prod ./my-ml-api --values values-prod.yaml
-
-      # - name: Publish Helm Chart
-      #   env:
-      #     HELM_REPO: ${{ secrets.HELM_REPO }}
-      #     HELM_USERNAME: ${{ secrets.HELM_USERNAME }}
-      #     HELM_PASSWORD: ${{ secrets.HELM_PASSWORD }}
-      #   run: |
-      #     helm repo add my-repo $HELM_REPO --username $HELM_USERNAME --password $HELM_PASSWORD
-      #     helm push my-ml-api-0.1.0.tgz my-repo
+        run: docker push <repo-name>/${{ env.IMAGE_NAME }}:${{ github.sha }}
