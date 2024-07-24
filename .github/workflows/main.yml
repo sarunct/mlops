@@ -1,0 +1,40 @@
+name: CD
+
+on:
+  push:
+    branches:
+      - <Branch>
+
+  pull_request:
+    branches:
+      - <Branch>
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        environment: < environment name [dev, staging, production] >
+
+    steps:
+      - name: Checkout Helm Chart
+        uses: actions/checkout@v2
+
+      - name: Setup Kubernetes Environment
+        uses: azure/setup-kubectl@v1
+        with:
+          version: <version>
+
+      - name: Set up Helm
+        uses: azure/setup-helm@v1
+        with:
+          version: <version>
+
+      - name: Minikube clusters Connection
+        run: |
+          echo "${{ secrets.MINIKUBE_CONFIG }}" > ~/.kube/config
+
+      - name: Deployment to Minikube Cluster
+        run: |
+          helm install my-release ./<helm_chart> -f ./<helm_chart>/<values_file.yaml>
