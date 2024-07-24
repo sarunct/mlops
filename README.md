@@ -52,7 +52,7 @@ Pushes the Docker image to a Docker repository:
           
                     git add ml.py Dockerfile
                     git commit -m "Add ML Python file and Dockerfile"
-                    git push origin main
+                    git push origin <branch_name>
 
 
 
