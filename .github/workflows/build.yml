@@ -1,6 +1,6 @@
 name: CI
 
-run-name: ${{ github.actor }}-<ModuleName-Version>
+run-name: ${{ github.actor }}-<Module_Name-Version>
 
 on:
   push:
