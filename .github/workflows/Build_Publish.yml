@@ -43,3 +43,6 @@ jobs:
         git add ./package
         git commit -m "MoneyForward_Demo"
         git push
+
+    - name: Send Email on Success Build & Package 
+        <Email configuration>
