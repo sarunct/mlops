@@ -1,0 +1,45 @@
+name: BUILD and PUBLISH HELM Chart
+
+on:
+  push:
+    branches:
+      - <BranchName>
+  pull_request:
+    branches:
+      - <BranchName>
+
+jobs:
+  Build-and-Publish:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout Helm Chart
+      uses: actions/checkout@v3
+    
+    - name: Set up Helm Environment
+      uses: azure/setup-helm@v1
+    
+    - name: Helm Chart Quality Check
+        run: helm lint mf_demo
+        continue-on-error: true
+        id: qc
+        
+    - name: Send Email on Quality Check Fails
+        if: steps.qc.outcome == 'failure'
+        uses: saurvs/generic-emailer@v2.2
+        <Email configuration>
+
+    - name: Package Helm chart
+        if: steps.qc.outcome == 'success'
+        run: helm package mf_demo -d ./package
+
+    - name: Publish Helm chart
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        helm repo index ./package --url https://github.com/sarunct/HelomRepo.git
+        git config --global user.name "<user_name>"
+        git config --global user.email "arun@gmail.com"
+        git add ./package
+        git commit -m "MoneyForward_Demo"
+        git push
